@@ -7,10 +7,9 @@ const public_users = express.Router();
 
 const promise = () =>{
     return new Promise((resolve, reject) => {
-        // Assuming books is fetched asynchronously, replace the setTimeout with your actual asynchronous operation
         setTimeout(() => {
           resolve(books);
-        }, 6000); // Simulating asynchronous operation with a delay of 1 second
+        }, 6000); 
       });
 }
 
@@ -95,7 +94,7 @@ public_users.get('/title/:title',function (req, res) {
         });
     })
     .catch((error) => {
-        res.status(500).json({ error: 'Error fetching books based on author' });
+        res.status(500).json({ error: 'Error fetching books based on title' });
       });
   /*var keys = Object.keys(books);
   keys.forEach((key) => {
