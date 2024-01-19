@@ -55,6 +55,31 @@ regd_users.post("/login", (req,res) => {
 regd_users.put("/auth/review/:isbn", (req, res) => {
   
   return res.status(300).json({message: "Yet to be implemented"});
+  /*const isbn = req.params.isbn
+    const username = req.session.authorization.username
+    const reviewText = req.body.reviewText
+
+    if (!username){
+        res.status(401).send('User not logged in!')
+    }
+
+    if (!reviewText){
+        res.send('Please fill in the required form')
+    }
+
+    if (books[isbn]){
+        if (books[isbn].reviews[username]){
+            books[isbn].reviews[username] = reviewText
+            res.send('Review modified!')
+        }
+        else {
+            books[isbn].reviews[username] = reviewText
+            res.send('Review added!')
+        }
+    }
+    else {
+        res.status(404).send('Book not found')
+    }*/
 });
 
 regd_users.delete("/auth/review/:isbn", (req, res) => {
@@ -63,6 +88,26 @@ regd_users.delete("/auth/review/:isbn", (req, res) => {
         delete books[isbn].reviews;
     }
     res.send(`Review successfully deleted.`);
+
+    /*const isbn = req.params.isbn
+    const username = req.session.authorization.username
+
+    if (!username){
+        res.status(401).send('User not logged in!')
+    }
+
+    if (books[isbn]){
+        if (books[isbn].reviews[username]){
+            delete books[isbn].reviews[username]
+            res.send('Review deleted!')
+        }
+        else {
+            res.send('You have not reviewed this book')
+        }
+    }
+    else {
+        res.status(404).send('Book not found')
+    }*/
 });
 
 module.exports.authenticated = regd_users;
